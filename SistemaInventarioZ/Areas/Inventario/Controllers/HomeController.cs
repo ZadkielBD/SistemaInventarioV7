@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SistemaInventarioZ.Modelos.ViewModels;
+using SistemaInventarioZ.Modelos.ErrorViewModels;
 
 namespace SistemaInventarioZ.Areas.Inventario.Controllers
 {

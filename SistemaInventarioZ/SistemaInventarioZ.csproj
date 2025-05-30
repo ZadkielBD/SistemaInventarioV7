@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-SistemaInventarioZ-c27cbc8d-c2fc-4a4b-a5d7-bb00508125a3</UserSecretsId>
   </PropertyGroup>
@@ -20,6 +19,10 @@
     <ProjectReference Include="..\SistemaInventarioZ.AccesoDatos\SistemaInventarioZ.AccesoDatos.csproj" />
     <ProjectReference Include="..\SistemaInventarioZ.Modelos\SistemaInventarioZ.Modelos.csproj" />
     <ProjectReference Include="..\SistemaInventarioZ.Utilidades\SistemaInventarioZ.Utilidades.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\imagenes\producto\" />
   </ItemGroup>
 
 </Project>
