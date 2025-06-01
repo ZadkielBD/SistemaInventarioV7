@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaInventarioZ.AccesoDatos.Data;
 using SistemaInventarioZ.AccesoDatos.Repositorio.IRepositorio;
+using SistemaInventarioZ.Modelos.Especificaciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,31 @@ namespace SistemaInventarioZ.AccesoDatos.Repositorio
                 query = query.AsNoTracking(); // select * from ... no tracking
             }
             return await query.ToListAsync();
+        }
+
+        public PagedList<T> ObtenerTodosPaginado(Parametros parametros, Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string incluirPropiedades = null, bool isTracking = true)
+        {
+            IQueryable<T> query = dbSet;
+            if (filtro != null)
+            {
+                query = query.Where(filtro); // select /* from where ...
+            }
+            if (incluirPropiedades != null)
+            {
+                foreach (var IncluirProp in incluirPropiedades.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(IncluirProp); // ejemplo "Categoria.Marca"
+                }
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query); // order by           
+            }
+            if (!isTracking)
+            {
+                query = query.AsNoTracking(); // select * from ... no tracking
+            }
+            return PagedList<T>.ToPagedList(query, parametros.PageNuember, parametros.PageSize);
         }
 
         public async Task<T> ObtenerPrimero(Expression<Func<T, bool>> filtro = null,
