@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaInventarioZ.AccesoDatos.Repositorio.IRepositorio;
 using SistemaInventarioZ.Modelos;
 using SistemaInventarioZ.Modelos.ViewModels;
@@ -8,6 +9,7 @@ using SistemaInventarioZ.Utilidades;
 namespace SistemaInventarioZ.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = DS.Role_Admin + "," + DS.Role_Inventario)]
     public class ProductoController : Controller
     {
 

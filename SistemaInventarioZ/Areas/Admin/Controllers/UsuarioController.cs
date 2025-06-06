@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaInventarioZ.AccesoDatos.Data;
 using SistemaInventarioZ.AccesoDatos.Repositorio.IRepositorio;
+using SistemaInventarioZ.Utilidades;
 
 namespace SistemaInventarioZ.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = DS.Role_Admin)]
     public class UsuarioController : Controller
     {
 

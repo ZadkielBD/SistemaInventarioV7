@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaInventarioZ.AccesoDatos.Repositorio.IRepositorio;
 using SistemaInventarioZ.Modelos;
 using SistemaInventarioZ.Utilidades;
@@ -7,6 +8,7 @@ using SistemaInventarioZ.Utilidades;
 namespace SistemaInventarioZ.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = DS.Role_Admin)]
     public class CategoriaController : Controller
     {
 
