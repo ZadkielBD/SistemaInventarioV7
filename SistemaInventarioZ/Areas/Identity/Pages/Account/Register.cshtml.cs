@@ -161,7 +161,7 @@ namespace SistemaInventarioZ.Areas.Identity.Pages.Account
                     Pais = Input.Pais,
                     Role = Input.Role,
                 };
-
+              
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -192,8 +192,7 @@ namespace SistemaInventarioZ.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, user.Role);
                     }
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    /*
+                    var userId = await _userManager.GetUserIdAsync(user);                    
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -202,9 +201,9 @@ namespace SistemaInventarioZ.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                    */
+                    ((EmailSender)_emailSender).Name = $"{Input.Nombre} {Input.Apellidos}";
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirma tu email",
+                        $"Por favor Confirrma tu Cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Haz click aqui</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

@@ -2,6 +2,15 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using SistemaInventarioZ.Utilidades;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
@@ -9,14 +18,6 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
 
 namespace SistemaInventarioZ.Areas.Identity.Pages.Account
 {
@@ -111,7 +112,7 @@ namespace SistemaInventarioZ.Areas.Identity.Pages.Account
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
-            // Sign in the user with this external login provider if the user already has a login.
+            // Sign in the user with this external login provider if the user already has a login.EmailSender
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
