@@ -203,7 +203,7 @@ namespace SistemaInventarioZ.Areas.Identity.Pages.Account
 
                     ((EmailSender)_emailSender).Name = $"{Input.Nombre} {Input.Apellidos}";
                     await _emailSender.SendEmailAsync(Input.Email, "Confirma tu email",
-                        $"Por favor Confirrma tu Cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Haz click aqui</a>.");
+                        $"Por favor Confirma tu Cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Haz click aqui</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
