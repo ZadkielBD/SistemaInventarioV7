@@ -13,5 +13,8 @@ namespace SistemaInventarioZ.Modelos.ViewModels
         public int Stock { get; set; }
         public CarroCompra CarroCompra { get; set; }
 
+        public IEnumerable<CarroCompra> CarroCompralista { get; set; }
+        public Orden Orden { get; set; }
+
     }
 }
